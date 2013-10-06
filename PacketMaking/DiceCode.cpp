@@ -4,7 +4,6 @@ using namespace System::Collections::Generic;
 
 namespace DiceCode
 {
-	//エンコード用
 	List<int>^ Encode(String^ text)
 	{
 		List<int>^ result = gcnew List<int>();
@@ -12,7 +11,6 @@ namespace DiceCode
 		for each (wchar_t var in chars)
 		{
 
-			//ここのアルゴリズムを改良する。
 			result->Add(var/25);
 			result->Add((var/5)%5);
 			result->Add(var%5);
@@ -21,14 +19,12 @@ namespace DiceCode
 		return result;
 	}
 
-	//デコード用
 	String^ Decode(List<int>^ numbers)
 	{
 		StringBuilder^ sb = gcnew StringBuilder();
 		for (int i = 0; i < numbers->Count; i+=3)
 		{
 
-			//ここのアルゴリズムをエンコードによって変える
 			sb->Append((wchar_t)(numbers[i]*25+numbers[i+1]*5+numbers[i+2]));
 
 		}
